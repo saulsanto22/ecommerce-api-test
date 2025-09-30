@@ -17,6 +17,9 @@
         {
             "url": "http://localhost:8000",
             "description": "Local Development Server"
+        },
+        {
+            "url": "http://localhost:8000/docs"
         }
     ],
     "paths": {

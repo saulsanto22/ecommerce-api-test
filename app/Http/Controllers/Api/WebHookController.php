@@ -65,7 +65,7 @@ class WebhookController extends Controller
      */
     public function handlePaymentWebhook(PaymentWebhookRequest $request): JsonResponse
     {
-        Log::info('🔔 Payment Webhook Received', $request->all());
+        Log::info('Payment Webhook Received', $request->all());
 
         try {
             DB::beginTransaction();
@@ -77,7 +77,7 @@ class WebhookController extends Controller
             // dd($payment);
 
             if (! $payment) {
-                Log::error('❌ Payment not found for webhook', ['payment_id' => $validated['id']]);
+                Log::error(' Payment not found for webhook', ['payment_id' => $validated['id']]);
                 DB::rollBack();
 
                 return $this->error('Payment not found', 404);
@@ -90,19 +90,19 @@ class WebhookController extends Controller
                 'payment_method' => $validated['payment_method'] ?? null,
             ]);
 
-            // SESUAI SOAL: Webhook untuk update status pesanan ketika pembayaran berhasil
+            
             if ($validated['status'] === 'PAID') {
                 $payment->order->update(['status' => 'paid']);
 
-                Log::info('✅ Payment successful, order updated', [
+                Log::info(' Payment successful, order updated', [
                     'order_number' => $payment->order->order_number,
                     'payment_id' => $validated['id'],
                     'amount' => $validated['amount'],
                 ]);
             } elseif ($validated['status'] === 'EXPIRED') {
-                // Optional: Kalau payment expired, bisa update order status
+              
                 $payment->order->update(['status' => 'cancelled']);
-                Log::info('❌ Payment expired, order cancelled', [
+                Log::info(' Payment expired, order cancelled', [
                     'order_number' => $payment->order->order_number,
                 ]);
             }

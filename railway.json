@@ -4,7 +4,7 @@
         "builder": "NIXPACKS"
     },
     "deploy": {
-             "startCommand": "php artisan vendor:publish --provider=\"L5Swagger\\L5SwaggerServiceProvider\" --tag=assets --force && php artisan l5-swagger:generate && php artisan serve --host=0.0.0.0 --port=$PORT",
+        "startCommand": "php artisan vendor:publish --provider=\"L5Swagger\\L5SwaggerServiceProvider\" --force && php artisan l5-swagger:generate && mkdir -p public/vendor/l5-swagger && cp -r resources/views/vendor/l5-swagger/asset/* public/vendor/l5-swagger/ && php artisan serve --host=0.0.0.0 --port=$PORT",
         "healthcheckTimeout": 120
     }
 }

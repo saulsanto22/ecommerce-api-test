@@ -18,12 +18,12 @@ return [
                 /*
                  * Edit to include full URL in ui for assets
                  */
-                'use_absolute_path' => true,
+                'use_absolute_path' => env('L5_SWAGGER_USE_ABSOLUTE_PATH', true),
 
                 /*
                 * Edit to set path where swagger ui assets should be stored
                 */
-                'swagger_ui_assets_path' => env('L5_SWAGGER_UI_ASSETS_PATH', 'https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/'),
+                'swagger_ui_assets_path' => env('L5_SWAGGER_UI_ASSETS_PATH', 'vendor/swagger-api/swagger-ui/dist/'),
 
                 /*
                  * File name of the generated json documentation file
@@ -91,7 +91,7 @@ return [
             /*
              * Edit to set the api's base path
              */
-           'base' => env('APP_URL') . '/docs',
+            'base' => env('L5_SWAGGER_BASE_PATH', null),
 
             /*
              * Absolute path to directories that should be excluded from scanning
@@ -312,7 +312,7 @@ return [
          * Constants which can be used in annotations
          */
         'constants' => [
-            'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'https://ecommerce-api-test-production.up.railway.app'),
+            'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'http://my-default-host.com'),
         ],
     ],
 ];

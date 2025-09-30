@@ -1,7 +1,7 @@
 <?php
 
 return [
-        'api_access_key' => env('API_ACCESS_KEY', 'ecm_access_2024'),
+    'api_access_key' => env('API_ACCESS_KEY', 'ecm_access_2024'),
     'api_secret_key' => env('API_SECRET_KEY', 'ecm_secret_2024_secure'),
     /*
     |--------------------------------------------------------------------------

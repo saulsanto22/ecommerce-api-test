@@ -14,21 +14,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create admin user
-        User::create([
+
+        User::firstOrCreate([
             'name' => 'Admin User',
             'email' => 'admin@ecommerce.com',
             'password' => Hash::make('password123'),
         ]);
 
-        // Create test user
-        User::create([
+        User::firstOrCreate([
             'name' => 'Test User',
             'email' => 'test@ecommerce.com',
             'password' => Hash::make('password123'),
         ]);
 
-        // Create sample products
         $products = [
             [
                 'name' => 'Laptop ASUS ROG Strix G15',
@@ -68,7 +66,7 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($products as $product) {
-            Product::create($product);
+            Product::updateOrCreate($product);
         }
 
         $this->command->info('Sample data created successfully!');

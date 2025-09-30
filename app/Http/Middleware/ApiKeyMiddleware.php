@@ -18,11 +18,9 @@ class ApiKeyMiddleware
         // Sesuai soal: accessKey & secretKey di header setiap request
         $accessKey = $request->header('X-ACCESS-KEY');
         $secretKey = $request->header('X-SECRET-KEY');
- 
 
         $validAccessKey = config('app.api_access_key');
         $validSecretKey = config('app.api_secret_key');
-   
 
         if (! $accessKey || ! $secretKey) {
             return response()->json([
@@ -30,7 +28,7 @@ class ApiKeyMiddleware
                 'message' => 'API credentials required',
             ], 401);
         }
-   
+
         if ($accessKey !== $validAccessKey || $secretKey !== $validSecretKey) {
             return response()->json([
                 'success' => false,
